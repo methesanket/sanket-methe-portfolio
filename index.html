@@ -1,1427 +1,726 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-  <meta name="description" content="Sanket Methe — Developer Portfolio">
-  <meta name="author" content="Sanket Methe">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-  <title>Sanket Methe | Developer</title>
+    <meta name="description"
+          content="Sanket Methe — Developer Portfolio">
 
-  <link rel="stylesheet" href="style.css">
+    <meta name="author"
+          content="Sanket Methe">
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    <title>Sanket Methe | Developer Portfolio</title>
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <link rel="stylesheet" href="style.css">
 
-    html {
-      scroll-behavior: smooth;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #070707;
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    ::selection {
-      background: #8b7cff;
-      color: #fff;
-    }
-
-    /* LOADER */
-
-    .loader {
-      position: fixed;
-      inset: 0;
-      background: #070707;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity .8s ease, visibility .8s ease;
-    }
-
-    .loader.hide {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    .loader-text {
-      font-size: 2rem;
-      font-weight: 800;
-      letter-spacing: -2px;
-      animation: pulse 1.2s infinite alternate;
-    }
-
-    @keyframes pulse {
-      from {
-        opacity: .3;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    /* BACKGROUND */
-
-    .background {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-
-      background:
-        radial-gradient(
-          circle at 20% 20%,
-          rgba(120,80,255,.18),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 80% 70%,
-          rgba(0,180,255,.12),
-          transparent 30%
-        ),
-        #070707;
-    }
-
-    .grid {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      opacity: .12;
-
-      background-image:
-        linear-gradient(
-          rgba(255,255,255,.08) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255,255,255,.08) 1px,
-          transparent 1px
-        );
-
-      background-size: 60px 60px;
-
-      mask-image:
-        linear-gradient(
-          to bottom,
-          black,
-          transparent
-        );
-    }
-
-    /* MOUSE GLOW */
-
-    .mouse-glow {
-      position: fixed;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: -1;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(139,124,255,.12),
-          transparent 65%
-        );
-
-      transform: translate(-50%, -50%);
-      transition: left .12s ease, top .12s ease;
-    }
-
-    /* NAVIGATION */
-
-    nav {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-
-      width: min(92%, 1100px);
-
-      padding: 14px 20px;
-
-      border: 1px solid rgba(255,255,255,.1);
-
-      background: rgba(15,15,15,.65);
-
-      backdrop-filter: blur(20px);
-
-      border-radius: 50px;
-
-      z-index: 1000;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      transition: .4s ease;
-    }
-
-    nav.scrolled {
-      background: rgba(10,10,10,.92);
-      box-shadow:
-        0 20px 60px rgba(0,0,0,.35);
-    }
-
-    .logo {
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
-
-    .logo span {
-      color: #8b7cff;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 25px;
-      list-style: none;
-
-      font-size: .85rem;
-      color: #aaa;
-    }
-
-    .nav-links a {
-      position: relative;
-      transition: .3s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: #fff;
-    }
-
-    .nav-links a::after {
-      content: "";
-
-      position: absolute;
-
-      left: 0;
-      bottom: -6px;
-
-      width: 0;
-      height: 2px;
-
-      background: #8b7cff;
-
-      transition: .3s;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
-
-    .nav-button {
-      padding: 9px 16px;
-
-      background: #fff;
-      color: #000;
-
-      border-radius: 30px;
-
-      font-size: .8rem;
-      font-weight: 700;
-
-      transition: .3s;
-    }
-
-    .nav-button:hover {
-      transform: translateY(-2px);
-      box-shadow:
-        0 10px 30px rgba(255,255,255,.15);
-    }
-
-    /* HERO */
-
-    .hero {
-      min-height: 100vh;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      text-align: center;
-
-      padding: 120px 20px 60px;
-    }
-
-    .hero-content {
-      max-width: 900px;
-    }
-
-    .eyebrow {
-      display: inline-block;
-
-      padding: 8px 15px;
-
-      border: 1px solid rgba(255,255,255,.12);
-
-      border-radius: 50px;
-
-      color: #aaa;
-
-      font-size: .8rem;
-
-      margin-bottom: 25px;
-
-      animation: fadeUp 1s ease forwards;
-    }
-
-    .hero h1 {
-      font-size: clamp(3.5rem, 10vw, 8rem);
-
-      line-height: .9;
-
-      letter-spacing: -7px;
-
-      font-weight: 800;
-
-      animation: fadeUp 1s .15s ease both;
-    }
-
-    .hero h1 span {
-      background:
-        linear-gradient(
-          90deg,
-          #fff,
-          #8b7cff,
-          #67d8ff
-        );
-
-      background-size: 200% auto;
-
-      -webkit-background-clip: text;
-
-      color: transparent;
-
-      animation:
-        gradientMove 5s linear infinite;
-    }
-
-    @keyframes gradientMove {
-      from {
-        background-position: 0 center;
-      }
-
-      to {
-        background-position: 200% center;
-      }
-    }
-
-    .hero p {
-      max-width: 650px;
-
-      margin: 30px auto;
-
-      color: #999;
-
-      font-size: 1.05rem;
-
-      line-height: 1.8;
-
-      animation: fadeUp 1s .3s ease both;
-    }
-
-    .hero-buttons {
-      display: flex;
-
-      justify-content: center;
-
-      gap: 12px;
-
-      animation: fadeUp 1s .45s ease both;
-    }
-
-    .btn {
-      padding: 14px 22px;
-
-      border-radius: 40px;
-
-      border:
-        1px solid rgba(255,255,255,.15);
-
-      transition: .3s;
-
-      font-weight: 600;
-
-      font-size: .9rem;
-    }
-
-    .btn.primary {
-      background: #fff;
-      color: #000;
-    }
-
-    .btn:hover {
-      transform: translateY(-4px);
-
-      box-shadow:
-        0 15px 40px rgba(139,124,255,.2);
-    }
-
-    .scroll {
-      margin-top: 80px;
-
-      color: #555;
-
-      font-size: .7rem;
-
-      letter-spacing: 3px;
-
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%,100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(8px);
-      }
-    }
-
-    /* SECTIONS */
-
-    section {
-      width: min(1100px, 90%);
-
-      margin: auto;
-
-      padding: 120px 0;
-    }
-
-    .section-number {
-      color: #8b7cff;
-
-      font-size: .75rem;
-
-      letter-spacing: 3px;
-
-      margin-bottom: 15px;
-    }
-
-    .section-title {
-      font-size: clamp(2.5rem, 6vw, 5rem);
-
-      letter-spacing: -4px;
-
-      margin-bottom: 50px;
-    }
-
-    /* ABOUT */
-
-    .about {
-      display: grid;
-
-      grid-template-columns: 1fr 1fr;
-
-      gap: 60px;
-
-      align-items: center;
-    }
-
-    .about-text {
-      color: #999;
-
-      line-height: 1.9;
-
-      font-size: 1.05rem;
-    }
-
-    .about-text strong {
-      color: #fff;
-    }
-
-    .about-card {
-      padding: 40px;
-
-      border:
-        1px solid rgba(255,255,255,.1);
-
-      background:
-        rgba(255,255,255,.03);
-
-      border-radius: 25px;
-
-      transition: .4s;
-    }
-
-    .about-card:hover {
-      transform: translateY(-8px);
-
-      border-color:
-        rgba(139,124,255,.5);
-    }
-
-    .about-card h3 {
-      margin-bottom: 15px;
-    }
-
-    .about-card p {
-      color: #888;
-
-      line-height: 1.7;
-    }
-
-    /* SKILLS */
-
-    .skills {
-      display: grid;
-
-      grid-template-columns:
-        repeat(4, 1fr);
-
-      gap: 12px;
-    }
-
-    .skill {
-      padding: 25px;
-
-      border:
-        1px solid rgba(255,255,255,.08);
-
-      border-radius: 18px;
-
-      background:
-        rgba(255,255,255,.025);
-
-      transition: .35s;
-    }
-
-    .skill:hover {
-      transform: translateY(-7px);
-
-      background:
-        rgba(139,124,255,.08);
-
-      border-color: #8b7cff;
-    }
-
-    .skill span {
-      color: #777;
-
-      font-size: .75rem;
-
-      display: block;
-
-      margin-bottom: 12px;
-    }
-
-    /* EXPERIENCE */
-
-    .timeline {
-      border-left: 1px solid #333;
-
-      padding-left: 30px;
-    }
-
-    .timeline-item {
-      position: relative;
-
-      margin-bottom: 60px;
-    }
-
-    .timeline-item::before {
-      content: '';
-
-      position: absolute;
-
-      left: -36px;
-
-      top: 5px;
-
-      width: 10px;
-      height: 10px;
-
-      border-radius: 50%;
-
-      background: #8b7cff;
-
-      box-shadow:
-        0 0 20px #8b7cff;
-    }
-
-    .timeline-item small {
-      color: #8b7cff;
-    }
-
-    .timeline-item h3 {
-      margin: 10px 0;
-
-      font-size: 1.5rem;
-    }
-
-    .timeline-item p {
-      color: #888;
-
-      line-height: 1.7;
-    }
-
-    /* PROJECTS */
-
-    .projects {
-      display: grid;
-
-      grid-template-columns:
-        repeat(2, 1fr);
-
-      gap: 20px;
-    }
-
-    .project {
-      min-height: 300px;
-
-      padding: 30px;
-
-      border:
-        1px solid rgba(255,255,255,.1);
-
-      border-radius: 25px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,.05),
-          rgba(255,255,255,.015)
-        );
-
-      display: flex;
-
-      flex-direction: column;
-
-      justify-content: space-between;
-
-      transition:
-        transform .4s ease,
-        border-color .4s ease,
-        box-shadow .4s ease;
-
-      position: relative;
-
-      overflow: hidden;
-    }
-
-    .project::before {
-      content: "";
-
-      position: absolute;
-
-      width: 220px;
-      height: 220px;
-
-      top: -140px;
-      right: -100px;
-
-      border-radius: 50%;
-
-      background:
-        rgba(139,124,255,.10);
-
-      filter: blur(25px);
-
-      transition: .5s;
-    }
-
-    .project:hover::before {
-      transform: scale(1.7);
-    }
-
-    .project:hover {
-      transform:
-        translateY(-10px);
-
-      border-color:
-        rgba(139,124,255,.6);
-
-      box-shadow:
-        0 30px 80px rgba(0,0,0,.25);
-    }
-
-    .project > div {
-      position: relative;
-      z-index: 1;
-    }
-
-    .project-number {
-      color: #555;
-
-      font-size: .75rem;
-    }
-
-    .project h3 {
-      font-size: 1.7rem;
-
-      margin: 15px 0;
-
-      transition: .3s;
-    }
-
-    .project:hover h3 {
-      color: #b6adff;
-    }
-
-    .project p {
-      color: #888;
-
-      line-height: 1.6;
-    }
-
-    .project-footer {
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: center;
-
-      gap: 15px;
-
-      margin-top: 30px;
-
-      color: #aaa;
-
-      font-size: .8rem;
-    }
-
-    .project-link {
-      padding: 9px 13px;
-
-      border:
-        1px solid rgba(255,255,255,.12);
-
-      border-radius: 30px;
-
-      transition: .3s;
-
-      white-space: nowrap;
-    }
-
-    .project-link:hover {
-      background: #fff;
-
-      color: #000;
-
-      transform: translateY(-2px);
-    }
-
-    /* CONTACT */
-
-    .contact {
-      text-align: center;
-
-      padding-bottom: 180px;
-    }
-
-    .contact h2 {
-      font-size: clamp(3rem, 8vw, 7rem);
-
-      letter-spacing: -6px;
-
-      background:
-        linear-gradient(
-          120deg,
-          #fff,
-          #8b7cff,
-          #fff
-        );
-
-      background-size: 200% auto;
-
-      -webkit-background-clip: text;
-
-      color: transparent;
-
-      animation:
-        gradientMove 6s linear infinite;
-    }
-
-    .contact p {
-      color: #888;
-
-      margin: 25px auto 35px;
-
-      max-width: 550px;
-
-      line-height: 1.7;
-    }
-
-    /* FOOTER */
-
-    footer {
-      border-top:
-        1px solid rgba(255,255,255,.08);
-
-      padding: 30px 5%;
-
-      display: flex;
-
-      justify-content: space-between;
-
-      color: #555;
-
-      font-size: .75rem;
-    }
-
-    /* REVEAL */
-
-    .reveal {
-      opacity: 0;
-
-      transform: translateY(30px);
-
-      transition:
-        opacity .8s ease,
-        transform .8s ease;
-    }
-
-    .reveal.revealed {
-      opacity: 1;
-
-      transform: translateY(0);
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 700px) {
-
-      nav {
-        top: 12px;
-
-        width: 94%;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero h1 {
-        letter-spacing: -4px;
-      }
-
-      .hero p {
-        font-size: .95rem;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-
-        align-items: center;
-      }
-
-      .btn {
-        width: 220px;
-      }
-
-      section {
-        padding: 80px 0;
-      }
-
-      .about {
-        grid-template-columns: 1fr;
-      }
-
-      .skills {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
-
-      .projects {
-        grid-template-columns: 1fr;
-      }
-
-      .section-title {
-        letter-spacing: -2px;
-      }
-
-      .contact h2 {
-        letter-spacing: -3px;
-      }
-
-      .project-footer {
-        flex-direction: column;
-
-        align-items: flex-start;
-      }
-
-      footer {
-        flex-direction: column;
-
-        gap: 10px;
-
-        text-align: center;
-      }
-
-      .mouse-glow {
-        display: none;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      *,
-      *::before,
-      *::after {
-        animation-duration: .01ms !important;
-
-        animation-iteration-count: 1 !important;
-
-        transition-duration: .01ms !important;
-
-        scroll-behavior: auto !important;
-      }
-    }
-  </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+          rel="stylesheet">
 </head>
 
 <body>
 
-  <!-- LOADER -->
+<!-- =========================
+     LOADER
+========================= -->
 
-  <div class="loader">
-    <div class="loader-text">SM.</div>
-  </div>
+<div class="loader" id="loader">
+    <div class="loader-text">
+        <span>S</span>
+    </div>
+</div>
 
-  <!-- BACKGROUND -->
 
-  <div class="background"></div>
-  <div class="grid"></div>
+<!-- =========================
+     NAVIGATION
+========================= -->
 
-  <!-- NAVIGATION -->
+<header class="navbar">
 
-  <nav>
-
-    <a href="#" class="logo">
-      Sanket<span>.</span>
+    <a href="#home" class="logo">
+        Sanket<span>.</span>
     </a>
 
-    <ul class="nav-links">
+    <nav class="nav-links">
 
-      <li>
+        <a href="#home">Home</a>
+
         <a href="#about">About</a>
-      </li>
 
-      <li>
         <a href="#skills">Skills</a>
-      </li>
 
-      <li>
-        <a href="#experience">Experience</a>
-      </li>
-
-      <li>
         <a href="#projects">Projects</a>
-      </li>
 
-    </ul>
+        <a href="#contact">Contact</a>
 
-    <a
-      href="#contact"
-      class="nav-button"
-    >
-      Let's Talk
+    </nav>
+
+    <a href="#contact" class="nav-button">
+        Let's Talk
     </a>
 
-  </nav>
+</header>
 
-  <!-- MAIN -->
 
-  <main>
+<!-- =========================
+     HERO
+========================= -->
 
-    <!-- HERO -->
+<main>
 
-    <header class="hero">
+<section class="hero" id="home">
 
-      <div class="hero-content">
+    <div class="hero-content">
 
-        <div class="eyebrow">
-          AVAILABLE FOR OPPORTUNITIES
-        </div>
+        <p class="eyebrow">
+            AVAILABLE FOR OPPORTUNITIES
+        </p>
 
         <h1>
-          SANKET<br>
-          <span>METHE.</span>
+            Hi, I'm
+            <span>Sanket Methe.</span>
         </h1>
 
-        <p>
-          BSc IT graduate and developer focused on building
-          modern, responsive and user-focused digital experiences.
-          I'm continuously learning and turning ideas into real projects.
+        <h2>
+            Developer & Tech Enthusiast
+        </h2>
+
+        <p class="hero-description">
+            I build modern, responsive and user-focused
+            digital experiences while continuously learning
+            new technologies.
         </p>
 
         <div class="hero-buttons">
 
-          <a
-            href="#projects"
-            class="btn primary"
-          >
-            View My Work
-          </a>
+            <a href="#projects" class="primary-button">
+                View My Work
+                <span>↗</span>
+            </a>
 
-          <a
-            href="#contact"
-            class="btn"
-          >
-            Contact Me
-          </a>
+            <a href="#contact" class="secondary-button">
+                Let's Connect
+            </a>
 
         </div>
 
-        <div class="scroll">
-          SCROLL TO EXPLORE ↓
+        <div class="hero-socials">
+
+            <a href="https://github.com/methesanket"
+               target="_blank">
+                GitHub
+            </a>
+
+            <a href="https://www.linkedin.com/in/Sanketmethe"
+               target="_blank">
+                LinkedIn
+            </a>
+
         </div>
 
-      </div>
-
-    </header>
+    </div>
 
 
-    <!-- ABOUT -->
+    <div class="hero-card">
 
-    <section id="about">
+        <div class="card-glow"></div>
 
-      <div class="section-number">
-        01 — ABOUT
-      </div>
+        <div class="terminal">
 
-      <h2 class="section-title">
-        Building ideas<br>
-        into experiences.
-      </h2>
+            <div class="terminal-top">
 
-      <div class="about">
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+            <div class="terminal-body">
+
+                <p>
+                    <span class="purple">const</span>
+                    developer =
+                    <span class="green">"Sanket"</span>;
+                </p>
+
+                <p>
+                    <span class="purple">const</span>
+                    passion =
+                    <span class="green">"Technology"</span>;
+                </p>
+
+                <p>
+                    <span class="purple">const</span>
+                    goal =
+                    <span class="green">"Keep Learning"</span>;
+                </p>
+
+                <p class="cursor-line">
+                    _
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="section" id="about">
+
+    <div class="section-heading">
+
+        <p class="section-number">
+            01 / ABOUT
+        </p>
+
+        <h2>
+            Building my journey,
+            <span>one project at a time.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="about-grid">
 
         <div class="about-text">
 
-          I'm <strong>Sanket Methe</strong>, a developer
-          passionate about creating clean, responsive and
-          meaningful digital experiences.
+            <p>
+                I'm Sanket Methe, a developer passionate about
+                technology, web development and solving problems
+                through code.
+            </p>
 
-          <br><br>
+            <p>
+                My journey started with learning the fundamentals
+                of web development and building projects from
+                scratch. I'm constantly improving my skills and
+                exploring new technologies.
+            </p>
 
-          I have a background in
-          <strong>Information Technology</strong> and hands-on
-          experience through internships, freelance projects
-          and personal builds.
-
-          <br><br>
-
-          I'm constantly learning, experimenting and improving
-          my development skills by building real-world projects.
-
-        </div>
-
-        <div class="about-card">
-
-          <h3>
-            Currently learning
-          </h3>
-
-          <p>
-            JavaScript • Full-Stack Development • APIs •
-            Databases • Modern UI • Web Performance
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- SKILLS -->
-
-    <section id="skills">
-
-      <div class="section-number">
-        02 — SKILLS
-      </div>
-
-      <h2 class="section-title">
-        My toolkit.
-      </h2>
-
-      <div class="skills">
-
-        <div class="skill reveal">
-          <span>01</span>
-          HTML5
-        </div>
-
-        <div class="skill reveal">
-          <span>02</span>
-          CSS3
-        </div>
-
-        <div class="skill reveal">
-          <span>03</span>
-          JavaScript
-        </div>
-
-        <div class="skill reveal">
-          <span>04</span>
-          Python
-        </div>
-
-        <div class="skill reveal">
-          <span>05</span>
-          SQL
-        </div>
-
-        <div class="skill reveal">
-          <span>06</span>
-          Git & GitHub
-        </div>
-
-        <div class="skill reveal">
-          <span>07</span>
-          REST APIs
-        </div>
-
-        <div class="skill reveal">
-          <span>08</span>
-          Responsive Design
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- EXPERIENCE -->
-
-    <section id="experience">
-
-      <div class="section-number">
-        03 — EXPERIENCE
-      </div>
-
-      <h2 class="section-title">
-        My journey.
-      </h2>
-
-      <div class="timeline">
-
-        <div class="timeline-item reveal">
-
-          <small>
-            2026
-          </small>
-
-          <h3>
-            Full-Stack Web Development Intern
-          </h3>
-
-          <p>
-            Prodigy InfoTech — Worked on practical web
-            development projects and strengthened my
-            frontend and full-stack development skills.
-          </p>
+            <p>
+                I believe that every project is an opportunity
+                to learn something new.
+            </p>
 
         </div>
 
 
-        <div class="timeline-item reveal">
+        <div class="about-stats">
 
-          <small>
-            2026
-          </small>
+            <div class="stat">
 
-          <h3>
-            BSc Information Technology
-          </h3>
+                <strong>01+</strong>
 
-          <p>
-            Pillai University — Built a foundation in
-            programming, databases, web development and
-            information technology.
-          </p>
+                <span>
+                    Portfolio Projects
+                </span>
+
+            </div>
+
+            <div class="stat">
+
+                <strong>∞</strong>
+
+                <span>
+                    Learning Mindset
+                </span>
+
+            </div>
+
+            <div class="stat">
+
+                <strong>24/7</strong>
+
+                <span>
+                    Curiosity
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SKILLS
+========================= -->
+
+<section class="section skills-section" id="skills">
+
+    <div class="section-heading">
+
+        <p class="section-number">
+            02 / SKILLS
+        </p>
+
+        <h2>
+            Technologies I'm
+            <span>working with.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="skills-grid">
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                HTML
+            </div>
+
+            <h3>
+                HTML5
+            </h3>
+
+            <p>
+                Semantic and structured web pages.
+            </p>
 
         </div>
 
 
-        <div class="timeline-item reveal">
+        <div class="skill-card">
 
-          <small>
-            2024 — Present
-          </small>
+            <div class="skill-icon">
+                CSS
+            </div>
 
-          <h3>
-            Freelance Web Developer
-          </h3>
+            <h3>
+                CSS3
+            </h3>
 
-          <p>
-            Designing and developing websites for
-            real-world clients with a focus on responsive
-            design and user experience.
-          </p>
+            <p>
+                Responsive layouts, animations and UI design.
+            </p>
 
         </div>
 
-      </div>
 
-    </section>
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                JS
+            </div>
+
+            <h3>
+                JavaScript
+            </h3>
+
+            <p>
+                Interactive and dynamic web experiences.
+            </p>
+
+        </div>
 
 
-    <!-- PROJECTS -->
+        <div class="skill-card">
 
-    <section id="projects">
+            <div class="skill-icon">
+                GIT
+            </div>
 
-      <div class="section-number">
-        04 — SELECTED WORK
-      </div>
+            <h3>
+                Git & GitHub
+            </h3>
 
-      <h2 class="section-title">
-        Things I've built.
-      </h2>
+            <p>
+                Version control and project management.
+            </p>
 
-      <div class="projects">
+        </div>
+
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                SQL
+            </div>
+
+            <h3>
+                SQL
+            </h3>
+
+            <p>
+                Learning databases and data management.
+            </p>
+
+        </div>
+
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                AI
+            </div>
+
+            <h3>
+                AI / ML
+            </h3>
+
+            <p>
+                Exploring artificial intelligence and machine
+                learning.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROJECTS
+========================= -->
+
+<section class="section projects-section" id="projects">
+
+    <div class="section-heading">
+
+        <p class="section-number">
+            03 / PROJECTS
+        </p>
+
+        <h2>
+            Things I've
+            <span>built.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="projects-list">
 
 
         <!-- PROJECT 01 -->
 
-        <article class="project reveal">
+        <article class="project">
 
-          <div>
+            <div>
 
-            <div class="project-number">
-              01 / CLIENT WEBSITE
+                <p class="project-number">
+                    01 / WEBSITE
+                </p>
+
+                <h3>
+                    Personal Portfolio
+                </h3>
+
+                <p class="project-description">
+                    My first portfolio website created from
+                    scratch using HTML. It represents the
+                    beginning of my web development journey.
+                </p>
+
             </div>
 
-            <h3>
-              Pratik Salon Studio
-            </h3>
 
-            <p>
-              A modern business website created for
-              a salon brand with a focus on premium
-              presentation, responsive design and
-              customer experience.
-            </p>
+            <div class="project-footer">
 
-          </div>
+                <span>
+                    HTML • CSS
+                </span>
 
-          <div class="project-footer">
+                <a href="https://methesanket.github.io/PORTFOLIO/"
+                   target="_blank">
+                    ↗ View Project
+                </a>
 
-            <span>
-              HTML • CSS • JavaScript
-            </span>
-
-            <a
-              href="https://github.com/methesanket"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="project-link"
-            >
-              GitHub ↗
-            </a>
-
-          </div>
+            </div>
 
         </article>
 
 
         <!-- PROJECT 02 -->
 
-        <article class="project reveal">
+        <article class="project">
 
-          <div>
+            <div>
 
-            <div class="project-number">
-              02 / WEB DEVELOPMENT
+                <p class="project-number">
+                    02 / PORTFOLIO
+                </p>
+
+                <h3>
+                    Premium Developer Portfolio
+                </h3>
+
+                <p class="project-description">
+                    A modern personal portfolio focused on
+                    premium UI, responsive design, animations
+                    and interactive experiences.
+                </p>
+
             </div>
 
-            <h3>
-              ImageSalon
-            </h3>
 
-            <p>
-              A responsive image-editing service website
-              designed with a mobile-first approach and
-              a clean modern user interface.
-            </p>
+            <div class="project-footer">
 
-          </div>
+                <span>
+                    HTML • CSS • JavaScript
+                </span>
 
-          <div class="project-footer">
+                <a href="#home">
+                    ↗ Current Project
+                </a>
 
-            <span>
-              HTML • CSS • JavaScript
-            </span>
-
-            <a
-              href="https://github.com/methesanket"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="project-link"
-            >
-              GitHub ↗
-            </a>
-
-          </div>
+            </div>
 
         </article>
 
 
         <!-- PROJECT 03 -->
 
-        <article class="project reveal">
+        <article class="project">
 
-          <div>
+            <div>
 
-            <div class="project-number">
-              03 / WEB DEVELOPMENT
+                <p class="project-number">
+                    03 / UPCOMING
+                </p>
+
+                <h3>
+                    More Projects Coming
+                </h3>
+
+                <p class="project-description">
+                    I'm currently building more practical
+                    projects to improve my development skills
+                    and create a stronger portfolio.
+                </p>
+
             </div>
 
-            <h3>
-              Personal Portfolio
-            </h3>
 
-            <p>
-              A premium responsive developer portfolio
-              designed to showcase my skills, projects,
-              experience and continuous development journey.
-            </p>
+            <div class="project-footer">
 
-          </div>
+                <span>
+                    IN PROGRESS
+                </span>
 
-          <div class="project-footer">
+                <a href="#contact">
+                    ↗ Stay Connected
+                </a>
 
-            <span>
-              HTML • CSS • JavaScript
-            </span>
-
-            <a
-              href="https://github.com/methesanket/sanket-methe-portfolio"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="project-link"
-            >
-              Source Code ↗
-            </a>
-
-          </div>
+            </div>
 
         </article>
 
 
-        <!-- PROJECT 04 -->
+    </div>
 
-        <article class="project reveal">
+</section>
 
-          <div>
 
-            <div class="project-number">
-              04 / WEB DEVELOPMENT
-            </div>
+<!-- =========================
+     JOURNEY
+========================= -->
 
-            <h3>
-              Full-Stack Projects
-            </h3>
+<section class="section journey">
 
-            <p>
-              A collection of practical development work
-              created while learning full-stack web development,
-              including frontend interfaces and application concepts.
-            </p>
+    <div class="section-heading">
 
-          </div>
+        <p class="section-number">
+            04 / JOURNEY
+        </p>
 
-          <div class="project-footer">
+        <h2>
+            Always learning.
+            <span>Always building.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="timeline">
+
+        <div class="timeline-item">
 
             <span>
-              HTML • CSS • JavaScript • Full-Stack
+                01
             </span>
 
-            <a
-              href="https://github.com/methesanket"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="project-link"
-            >
-              GitHub ↗
-            </a>
+            <div>
 
-          </div>
+                <h3>
+                    Started Web Development
+                </h3>
 
-        </article>
+                <p>
+                    Began learning HTML, CSS and the fundamentals
+                    of creating websites.
+                </p>
 
+            </div>
 
-      </div>
-
-    </section>
+        </div>
 
 
-    <!-- CONTACT -->
+        <div class="timeline-item">
 
-    <section
-      id="contact"
-      class="contact"
-    >
+            <span>
+                02
+            </span>
 
-      <div class="section-number">
-        05 — CONTACT
-      </div>
+            <div>
 
-      <h2>
-        Let's build<br>
-        something.
-      </h2>
+                <h3>
+                    Started Building Projects
+                </h3>
 
-      <p>
+                <p>
+                    Turned learning into practical projects and
+                    started building real websites.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <span>
+                03
+            </span>
+
+            <div>
+
+                <h3>
+                    Expanding My Skills
+                </h3>
+
+                <p>
+                    Exploring JavaScript, databases, software
+                    development and modern technologies.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <span>
+                04
+            </span>
+
+            <div>
+
+                <h3>
+                    What's Next?
+                </h3>
+
+                <p>
+                    More projects, more learning and new
+                    opportunities.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section class="contact-section" id="contact">
+
+    <p class="section-number">
+        05 / CONTACT
+    </p>
+
+    <h2>
+        Let's build something
+        <span>great.</span>
+    </h2>
+
+    <p>
         I'm open to opportunities, collaborations and
-        interesting projects. Let's connect and create
-        something meaningful.
-      </p>
-
-      <a
-        class="btn primary"
-        href="mailto:Methesanket@gmail.com"
-      >
-        Get In Touch →
-      </a>
-
-    </section>
-
-  </main>
+        interesting projects.
+    </p>
 
 
-  <!-- FOOTER -->
+    <div class="contact-buttons">
 
-  <footer>
+        <a href="mailto:your-email@example.com"
+           class="primary-button">
 
-    <span>
-      © <span class="current-year">2026</span>
-      Sanket Methe
-    </span>
+            Send Me an Email
+            <span>↗</span>
 
-    <span>
-      Built with HTML • CSS • JavaScript
-    </span>
-
-  </footer>
+        </a>
 
 
-  <!-- EXTERNAL JAVASCRIPT -->
+        <a href="https://www.linkedin.com/in/Sanketmethe"
+           target="_blank"
+           class="secondary-button">
 
-  <script src="script.js"></script>
+            LinkedIn
+
+        </a>
+
+
+        <a href="https://github.com/methesanket"
+           target="_blank"
+           class="secondary-button">
+
+            GitHub
+
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        Sanket<span>.</span>
+    </div>
+
+    <p>
+        Designed & built by Sanket Methe.
+    </p>
+
+    <p>
+        © <span id="year"></span> Sanket Methe
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
