@@ -1,219 +1,151 @@
-/* =========================================
-   SANKET METHE — PORTFOLIO JAVASCRIPT
-========================================= */
+/* =========================================================
+   SANKET METHE — PREMIUM PORTFOLIO JAVASCRIPT
+   ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ---------- PAGE LOADER ---------- */
+    /* ---------- Cursor Glow ---------- */
 
-  const loader = document.querySelector(".loader");
+    const glow = document.createElement("div");
+    glow.className = "cursor-glow";
+    document.body.appendChild(glow);
 
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      if (loader) {
-        loader.classList.add("hide");
-      }
-    }, 600);
-  });
-
-
-  /* ---------- NAVBAR ---------- */
-
-  const nav = document.querySelector("nav");
-
-  const updateNavbar = () => {
-    if (!nav) return;
-
-    if (window.scrollY > 50) {
-      nav.classList.add("scrolled");
-    } else {
-      nav.classList.remove("scrolled");
-    }
-  };
-
-  window.addEventListener("scroll", updateNavbar);
-  updateNavbar();
-
-
-  /* ---------- SCROLL REVEAL ---------- */
-
-  const revealElements = document.querySelectorAll(
-    ".skill, .project, .timeline-item, .about-card"
-  );
-
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-
-      entries.forEach((entry) => {
-
-        if (entry.isIntersecting) {
-
-          entry.target.classList.add("revealed");
-
-          revealObserver.unobserve(entry.target);
-
-        }
-
-      });
-
-    },
-    {
-      threshold: 0.12
-    }
-  );
-
-
-  revealElements.forEach((element) => {
-    revealObserver.observe(element);
-  });
-
-
-  /* ---------- ACTIVE NAVIGATION ---------- */
-
-  const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".nav-links a");
-
-  const sectionObserver = new IntersectionObserver(
-    (entries) => {
-
-      entries.forEach((entry) => {
-
-        if (entry.isIntersecting) {
-
-          navLinks.forEach((link) => {
-            link.classList.remove("active");
-          });
-
-          const activeLink = document.querySelector(
-            `.nav-links a[href="#${entry.target.id}"]`
-          );
-
-          if (activeLink) {
-            activeLink.classList.add("active");
-          }
-
-        }
-
-      });
-
-    },
-    {
-      threshold: 0.35
-    }
-  );
-
-
-  sections.forEach((section) => {
-    sectionObserver.observe(section);
-  });
-
-
-  /* ---------- SMOOTH NAVIGATION ---------- */
-
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-
-    link.addEventListener("click", (event) => {
-
-      const targetId = link.getAttribute("href");
-
-      if (!targetId || targetId === "#") return;
-
-      const target = document.querySelector(targetId);
-
-      if (!target) return;
-
-      event.preventDefault();
-
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
+    document.addEventListener("mousemove", (e) => {
+        glow.style.left = `${e.clientX}px`;
+        glow.style.top = `${e.clientY}px`;
     });
 
-  });
 
+    /* ---------- Scroll Reveal ---------- */
 
-  /* ---------- DESKTOP MOUSE GLOW ---------- */
+    const revealElements = document.querySelectorAll(
+        "section, .project, .skill, .about, .contact"
+    );
 
-  const glow = document.createElement("div");
-
-  glow.className = "mouse-glow";
-
-  document.body.appendChild(glow);
-
-
-  if (window.matchMedia("(pointer: fine)").matches) {
-
-    window.addEventListener("pointermove", (event) => {
-
-      glow.style.left = `${event.clientX}px`;
-      glow.style.top = `${event.clientY}px`;
-
+    revealElements.forEach((element) => {
+        element.classList.add("reveal");
     });
 
-  }
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+    revealElements.forEach((element) => {
+        observer.observe(element);
+    });
 
 
-  /* ---------- PROJECT HOVER TILT ---------- */
+    /* ---------- Project Tilt Effect ---------- */
 
-  const projects = document.querySelectorAll(".project");
-
-  if (window.matchMedia("(pointer: fine)").matches) {
+    const projects = document.querySelectorAll(".project");
 
     projects.forEach((project) => {
 
-      project.addEventListener("mousemove", (event) => {
+        project.addEventListener("mousemove", (event) => {
 
-        const rect = project.getBoundingClientRect();
+            const rect = project.getBoundingClientRect();
 
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
 
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
 
-        const rotateX = ((y - centerY) / centerY) * -2;
-        const rotateY = ((x - centerX) / centerX) * 2;
+            const rotateX = ((y - centerY) / centerY) * -3;
+            const rotateY = ((x - centerX) / centerX) * 3;
 
-        project.style.transform =
-          `perspective(800px)
-           rotateX(${rotateX}deg)
-           rotateY(${rotateY}deg)
-           translateY(-8px)`;
+            project.style.transform =
+                `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+        });
 
-      });
-
-
-      project.addEventListener("mouseleave", () => {
-
-        project.style.transform = "";
-
-      });
+        project.addEventListener("mouseleave", () => {
+            project.style.transform = "";
+        });
 
     });
 
-  }
+
+    /* ---------- Dynamic Year ---------- */
+
+    document.querySelectorAll("[data-year]").forEach((element) => {
+        element.textContent = new Date().getFullYear();
+    });
 
 
-  /* ---------- DYNAMIC YEAR ---------- */
+    /* ---------- Smooth Anchor Navigation ---------- */
 
-  const yearElements = document.querySelectorAll(".current-year");
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
-  yearElements.forEach((element) => {
-    element.textContent = new Date().getFullYear();
-  });
+        link.addEventListener("click", (event) => {
+
+            const targetId = link.getAttribute("href");
+
+            if (targetId === "#") return;
+
+            const target = document.querySelector(targetId);
+
+            if (target) {
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+
+        });
+
+    });
 
 
-  /* ---------- CONSOLE MESSAGE ---------- */
+    /* ---------- Magnetic Buttons ---------- */
 
-  console.log(
-    "%cSanket Methe Portfolio",
-    "font-size:20px;font-weight:bold;"
-  );
+    const buttons = document.querySelectorAll(
+        ".btn, button, .project a"
+    );
 
-  console.log(
-    "Built with HTML, CSS & JavaScript."
-  );
+    buttons.forEach((button) => {
+
+        button.addEventListener("mousemove", (event) => {
+
+            const rect = button.getBoundingClientRect();
+
+            const x = event.clientX - rect.left - rect.width / 2;
+            const y = event.clientY - rect.top - rect.height / 2;
+
+            button.style.transform =
+                `translate(${x * 0.12}px, ${y * 0.12}px)`;
+        });
+
+        button.addEventListener("mouseleave", () => {
+            button.style.transform = "";
+        });
+
+    });
+
+
+    /* ---------- Page Loaded ---------- */
+
+    document.body.classList.add("loaded");
+
+    console.log(
+        "%cSanket Methe Portfolio",
+        "font-size:20px;font-weight:bold;"
+    );
+
+    console.log(
+        "%cBuilt with HTML, CSS & JavaScript.",
+        "font-size:14px;"
+    );
 
 });
