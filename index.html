@@ -1,171 +1,1034 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <meta name="description"
-          content="Sanket Methe — Developer Portfolio">
+<meta name="description"
+      content="Sanket Methe — Developer Portfolio">
 
-    <meta name="author"
-          content="Sanket Methe">
+<meta name="author"
+      content="Sanket Methe">
 
-    <title>Sanket Methe | Developer Portfolio</title>
+<title>Sanket Methe | Developer Portfolio</title>
 
-   <link rel="stylesheet" href="./style.css?v=2">
+<style>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+/* =====================================================
+   RESET
+===================================================== */
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
-          rel="stylesheet">
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #09090d;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+    line-height: 1.5;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+body {
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(100, 60, 220, 0.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 10% 60%,
+            rgba(40, 80, 180, 0.12),
+            transparent 30%
+        ),
+        #09090d;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.035) 1px,
+            transparent 1px
+        );
+
+    background-size: 80px 80px;
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: calc(100% - 60px);
+    max-width: 1350px;
+
+    padding: 16px 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 50px;
+
+    background: rgba(10,10,13,0.72);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: #8b5cf6;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #bcbcbc;
+    font-size: 15px;
+    transition: 0.25s ease;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+.nav-button {
+    background: white;
+    color: #08080a !important;
+
+    padding: 11px 20px;
+    border-radius: 30px;
+
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    width: min(1400px, calc(100% - 64px));
+    min-height: 100vh;
+
+    margin: auto;
+
+    padding-top: 180px;
+    padding-bottom: 120px;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(250px, 0.6fr);
+
+    gap: 70px;
+
+    align-items: center;
+}
+
+.hero-left {
+    min-width: 0;
+}
+
+.availability {
+    color: #888;
+    font-size: 15px;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    margin-bottom: 28px;
+}
+
+.hero-name {
+    font-size: clamp(70px, 10vw, 150px);
+
+    line-height: 0.84;
+    letter-spacing: -8px;
+
+    font-weight: 800;
+
+    margin-bottom: 60px;
+}
+
+.hero-name .gray {
+    color: #777;
+}
+
+.hero-title {
+    font-size: clamp(42px, 5vw, 75px);
+
+    line-height: 0.95;
+    letter-spacing: -4px;
+
+    margin-bottom: 35px;
+}
+
+.hero-description {
+    max-width: 720px;
+
+    color: #a4a4a4;
+
+    font-size: 20px;
+    line-height: 1.7;
+
+    margin-bottom: 32px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hero-buttons a {
+    padding: 13px 20px;
+
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.04);
+
+    transition: 0.25s ease;
+}
+
+.hero-buttons a:hover {
+    background: white;
+    color: black;
+}
+
+.hero-code {
+    padding-left: 35px;
+
+    border-left: 1px solid rgba(255,255,255,0.16);
+
+    font-family: "Courier New", monospace;
+
+    font-size: 19px;
+
+    line-height: 2.5;
+
+    color: #a0a0a0;
+}
+
+.hero-code .purple {
+    color: #b9a0ff;
+}
+
+.hero-code .white {
+    color: #e5e5e5;
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.section {
+    width: min(1400px, calc(100% - 64px));
+
+    margin: auto;
+
+    padding: 130px 0;
+}
+
+.section-number {
+    color: #777;
+
+    font-size: 14px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 20px;
+}
+
+.section-heading {
+    font-size: clamp(45px, 6vw, 90px);
+
+    line-height: 0.95;
+
+    letter-spacing: -5px;
+
+    margin-bottom: 60px;
+}
+
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.about-text {
+    max-width: 900px;
+
+    color: #aaa;
+
+    font-size: 23px;
+
+    line-height: 1.7;
+}
+
+.about-text p {
+    margin-bottom: 25px;
+}
+
+.stats {
+    margin-top: 55px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.stat {
+    padding: 30px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    border-radius: 24px;
+
+    background: rgba(255,255,255,0.035);
+}
+
+.stat-number {
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.stat-label {
+    color: #888;
+
+    margin-top: 5px;
+}
+
+
+/* =====================================================
+   SKILLS
+===================================================== */
+
+.skills-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.skill {
+    padding: 35px;
+
+    min-height: 210px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    border-radius: 26px;
+
+    background: rgba(255,255,255,0.035);
+
+    transition: 0.3s ease;
+}
+
+.skill:hover {
+    transform: translateY(-6px);
+
+    border-color:
+        rgba(255,255,255,0.3);
+}
+
+.skill-icon {
+    font-size: 35px;
+
+    margin-bottom: 25px;
+}
+
+.skill h3 {
+    font-size: 25px;
+
+    margin-bottom: 10px;
+}
+
+.skill p {
+    color: #888;
+}
+
+
+/* =====================================================
+   PROJECTS
+===================================================== */
+
+.projects-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 25px;
+}
+
+.project {
+    min-height: 380px;
+
+    padding: 40px;
+
+    border: 1px solid rgba(255,255,255,0.13);
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.055),
+            rgba(255,255,255,0.015)
+        );
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    transition: 0.3s ease;
+}
+
+.project:hover {
+    transform: translateY(-8px);
+
+    border-color:
+        rgba(255,255,255,0.3);
+}
+
+.project-number {
+    color: #777;
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+}
+
+.project h3 {
+    font-size: clamp(35px, 4vw, 58px);
+
+    line-height: 1;
+
+    letter-spacing: -3px;
+
+    margin: 30px 0 20px;
+}
+
+.project p {
+    color: #999;
+
+    font-size: 18px;
+
+    line-height: 1.6;
+}
+
+.project-bottom {
+    margin-top: 35px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    color: #aaa;
+}
+
+.project-link {
+    color: white;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.4);
+
+    padding-bottom: 3px;
+}
+
+
+/* =====================================================
+   JOURNEY
+===================================================== */
+
+.journey {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 25px;
+}
+
+.journey-item {
+    padding: 35px;
+
+    border-left:
+        1px solid rgba(255,255,255,0.2);
+
+    background:
+        rgba(255,255,255,0.025);
+}
+
+.journey-number {
+    color: #8b5cf6;
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 15px;
+}
+
+.journey-item h3 {
+    font-size: 27px;
+
+    margin-bottom: 10px;
+}
+
+.journey-item p {
+    color: #888;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   CONTACT
+===================================================== */
+
+.contact-box {
+    padding: 70px 50px;
+
+    border: 1px solid rgba(255,255,255,0.13);
+
+    border-radius: 35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(120,80,255,0.12),
+            rgba(255,255,255,0.025)
+        );
+
+    text-align: center;
+}
+
+.contact-box h2 {
+    font-size: clamp(45px, 7vw, 95px);
+
+    line-height: 0.95;
+
+    letter-spacing: -5px;
+
+    margin-bottom: 25px;
+}
+
+.contact-box p {
+    color: #999;
+
+    font-size: 19px;
+
+    margin-bottom: 35px;
+}
+
+.contact-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.contact-buttons a {
+    padding: 14px 24px;
+
+    border-radius: 30px;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    background: rgba(255,255,255,0.05);
+}
+
+.contact-buttons a:first-child {
+    background: white;
+
+    color: black;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    width: min(1400px, calc(100% - 64px));
+
+    margin: auto;
+
+    padding: 50px 0;
+
+    border-top:
+        1px solid rgba(255,255,255,0.1);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #666;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+
+        padding-top: 150px;
+    }
+
+    .hero-code {
+        border-left: none;
+
+        border-top:
+            1px solid rgba(255,255,255,0.15);
+
+        padding-left: 0;
+
+        padding-top: 30px;
+    }
+
+    .skills-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .nav {
+        position: absolute;
+
+        top: 12px;
+
+        width: calc(100% - 24px);
+
+        padding: 14px 16px;
+
+        border-radius: 25px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 12px;
+    }
+
+    .logo {
+        width: 100%;
+
+        text-align: center;
+
+        font-size: 22px;
+    }
+
+    .nav-links {
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .nav-button {
+        display: none;
+    }
+
+    .hero {
+        width: calc(100% - 32px);
+
+        padding-top: 180px;
+
+        padding-bottom: 80px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 50px;
+    }
+
+    .availability {
+        font-size: 11px;
+
+        letter-spacing: 1.5px;
+
+        margin-bottom: 20px;
+    }
+
+    .hero-name {
+        font-size: clamp(55px, 17vw, 82px);
+
+        line-height: 0.88;
+
+        letter-spacing: -5px;
+
+        margin-bottom: 45px;
+    }
+
+    .hero-title {
+        font-size: clamp(38px, 10vw, 54px);
+
+        line-height: 1;
+
+        letter-spacing: -2px;
+
+        margin-bottom: 25px;
+    }
+
+    .hero-description {
+        font-size: 17px;
+
+        line-height: 1.65;
+
+        margin-bottom: 25px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+
+        text-align: center;
+    }
+
+    .hero-code {
+        width: 100%;
+
+        font-size: 14px;
+
+        line-height: 2;
+
+        overflow-wrap: anywhere;
+    }
+
+    .section {
+        width: calc(100% - 32px);
+
+        padding: 85px 0;
+    }
+
+    .section-heading {
+        font-size: 48px;
+
+        letter-spacing: -3px;
+
+        margin-bottom: 40px;
+    }
+
+    .about-text {
+        font-size: 18px;
+
+        line-height: 1.7;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+    .stat {
+        padding: 25px;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skill {
+        min-height: auto;
+
+        padding: 28px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project {
+        min-height: 340px;
+
+        padding: 28px;
+
+        border-radius: 25px;
+    }
+
+    .project h3 {
+        font-size: 38px;
+
+        letter-spacing: -2px;
+    }
+
+    .project p {
+        font-size: 16px;
+    }
+
+    .project-bottom {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .journey {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-box {
+        padding: 50px 25px;
+
+        border-radius: 25px;
+    }
+
+    .contact-box h2 {
+        font-size: 48px;
+
+        letter-spacing: -3px;
+    }
+
+    .contact-box p {
+        font-size: 16px;
+    }
+
+    footer {
+        width: calc(100% - 32px);
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .hero-name {
+        font-size: 52px;
+
+        letter-spacing: -4px;
+    }
+
+    .hero-title {
+        font-size: 34px;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+    }
+}
+
+</style>
 </head>
+
 
 <body>
 
-<!-- =========================
-     LOADER
-========================= -->
 
-<div class="loader" id="loader">
-    <div class="loader-text">
-        <span>S</span>
-    </div>
-</div>
-
-
-<!-- =========================
+<!-- ===================================================
      NAVIGATION
-========================= -->
+=================================================== -->
 
-<header class="navbar">
+<nav class="nav">
 
     <a href="#home" class="logo">
         Sanket<span>.</span>
     </a>
 
-    <nav class="nav-links">
+    <ul class="nav-links">
 
-        <a href="#home">Home</a>
+        <li>
+            <a href="#home">Home</a>
+        </li>
 
-        <a href="#about">About</a>
+        <li>
+            <a href="#about">About</a>
+        </li>
 
-        <a href="#skills">Skills</a>
+        <li>
+            <a href="#skills">Skills</a>
+        </li>
 
-        <a href="#projects">Projects</a>
+        <li>
+            <a href="#projects">Projects</a>
+        </li>
 
-        <a href="#contact">Contact</a>
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
 
-    </nav>
+    </ul>
 
     <a href="#contact" class="nav-button">
         Let's Talk
     </a>
 
-</header>
+</nav>
 
 
-<!-- =========================
+<!-- ===================================================
      HERO
-========================= -->
+=================================================== -->
 
 <main>
 
 <section class="hero" id="home">
 
-    <div class="hero-content">
+    <div class="hero-left">
 
-        <p class="eyebrow">
-            AVAILABLE FOR OPPORTUNITIES
-        </p>
+        <div class="availability">
+            Available for opportunities
+        </div>
 
-        <h1>
+        <h1 class="hero-name">
             Hi, I'm
-            <span>Sanket Methe.</span>
+            <span class="gray">Sanket</span>
+            <span class="gray">Methe.</span>
         </h1>
 
-        <h2>
-            Developer & Tech Enthusiast
+        <h2 class="hero-title">
+            Developer &<br>
+            Tech Enthusiast
         </h2>
 
         <p class="hero-description">
             I build modern, responsive and user-focused
-            digital experiences while continuously learning
-            new technologies.
+            digital experiences while continuously
+            learning new technologies.
         </p>
 
         <div class="hero-buttons">
 
-            <a href="#projects" class="primary-button">
-                View My Work
-                <span>↗</span>
+            <a href="#projects">
+                View My Work ↗
             </a>
 
-            <a href="#contact" class="secondary-button">
+            <a href="#contact">
                 Let's Connect
             </a>
 
         </div>
 
-        <div class="hero-socials">
-
-            <a href="https://github.com/methesanket"
-               target="_blank">
-                GitHub
-            </a>
-
-            <a href="https://www.linkedin.com/in/Sanketmethe"
-               target="_blank">
-                LinkedIn
-            </a>
-
-        </div>
-
     </div>
 
 
-    <div class="hero-card">
+    <div class="hero-code">
 
-        <div class="card-glow"></div>
+        <div>
+            <span class="purple">const</span>
+            developer =
+            <span class="white">"Sanket"</span>;
+        </div>
 
-        <div class="terminal">
+        <div>
+            <span class="purple">const</span>
+            passion =
+            <span class="white">"Technology"</span>;
+        </div>
 
-            <div class="terminal-top">
-
-                <span></span>
-                <span></span>
-                <span></span>
-
-            </div>
-
-            <div class="terminal-body">
-
-                <p>
-                    <span class="purple">const</span>
-                    developer =
-                    <span class="green">"Sanket"</span>;
-                </p>
-
-                <p>
-                    <span class="purple">const</span>
-                    passion =
-                    <span class="green">"Technology"</span>;
-                </p>
-
-                <p>
-                    <span class="purple">const</span>
-                    goal =
-                    <span class="green">"Keep Learning"</span>;
-                </p>
-
-                <p class="cursor-line">
-                    _
-                </p>
-
-            </div>
-
+        <div>
+            <span class="purple">const</span>
+            goal =
+            <span class="white">"Keep Learning"</span>;
         </div>
 
     </div>
@@ -173,83 +1036,66 @@
 </section>
 
 
-<!-- =========================
+<!-- ===================================================
      ABOUT
-========================= -->
+=================================================== -->
 
 <section class="section" id="about">
 
-    <div class="section-heading">
+    <div class="section-number">
+        01 / ABOUT
+    </div>
 
-        <p class="section-number">
-            01 / ABOUT
+    <h2 class="section-heading">
+        Building my journey,<br>
+        one project at a time.
+    </h2>
+
+    <div class="about-text">
+
+        <p>
+            I'm Sanket Methe, a developer passionate
+            about technology, web development and
+            solving problems through code.
         </p>
 
-        <h2>
-            Building my journey,
-            <span>one project at a time.</span>
-        </h2>
+        <p>
+            My journey started with learning the
+            fundamentals of web development and
+            building projects from scratch.
+            I'm constantly improving my skills
+            and exploring new technologies.
+        </p>
+
+        <p>
+            I believe every project is an opportunity
+            to learn something new.
+        </p>
 
     </div>
 
 
-    <div class="about-grid">
+    <div class="stats">
 
-        <div class="about-text">
-
-            <p>
-                I'm Sanket Methe, a developer passionate about
-                technology, web development and solving problems
-                through code.
-            </p>
-
-            <p>
-                My journey started with learning the fundamentals
-                of web development and building projects from
-                scratch. I'm constantly improving my skills and
-                exploring new technologies.
-            </p>
-
-            <p>
-                I believe that every project is an opportunity
-                to learn something new.
-            </p>
-
+        <div class="stat">
+            <div class="stat-number">01+</div>
+            <div class="stat-label">
+                Portfolio Projects
+            </div>
         </div>
 
-
-        <div class="about-stats">
-
-            <div class="stat">
-
-                <strong>01+</strong>
-
-                <span>
-                    Portfolio Projects
-                </span>
-
+        <div class="stat">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">
+                Learning Mindset
             </div>
+        </div>
 
-            <div class="stat">
-
-                <strong>∞</strong>
-
-                <span>
-                    Learning Mindset
-                </span>
-
+        <div class="stat">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">
+                Curiosity
             </div>
-
-            <div class="stat">
-
-                <strong>24/7</strong>
-
-                <span>
-                    Curiosity
-                </span>
-
-            </div>
-
         </div>
 
     </div>
@@ -257,128 +1103,75 @@
 </section>
 
 
-<!-- =========================
+<!-- ===================================================
      SKILLS
-========================= -->
+=================================================== -->
 
-<section class="section skills-section" id="skills">
+<section class="section" id="skills">
 
-    <div class="section-heading">
-
-        <p class="section-number">
-            02 / SKILLS
-        </p>
-
-        <h2>
-            Technologies I'm
-            <span>working with.</span>
-        </h2>
-
+    <div class="section-number">
+        02 / SKILLS
     </div>
+
+    <h2 class="section-heading">
+        Technologies I'm<br>
+        working with.
+    </h2>
 
 
     <div class="skills-grid">
 
-        <div class="skill-card">
-
-            <div class="skill-icon">
-                HTML
-            </div>
-
-            <h3>
-                HTML5
-            </h3>
-
+        <div class="skill">
+            <div class="skill-icon">◇</div>
+            <h3>HTML5</h3>
             <p>
                 Semantic and structured web pages.
             </p>
-
         </div>
 
-
-        <div class="skill-card">
-
-            <div class="skill-icon">
-                CSS
-            </div>
-
-            <h3>
-                CSS3
-            </h3>
-
+        <div class="skill">
+            <div class="skill-icon">◇</div>
+            <h3>CSS3</h3>
             <p>
-                Responsive layouts, animations and UI design.
+                Responsive layouts, animations
+                and UI design.
             </p>
-
         </div>
 
-
-        <div class="skill-card">
-
-            <div class="skill-icon">
-                JS
-            </div>
-
-            <h3>
-                JavaScript
-            </h3>
-
+        <div class="skill">
+            <div class="skill-icon">JS</div>
+            <h3>JavaScript</h3>
             <p>
-                Interactive and dynamic web experiences.
+                Interactive and dynamic
+                web experiences.
             </p>
-
         </div>
 
-
-        <div class="skill-card">
-
-            <div class="skill-icon">
-                GIT
-            </div>
-
-            <h3>
-                Git & GitHub
-            </h3>
-
+        <div class="skill">
+            <div class="skill-icon">⌘</div>
+            <h3>Git & GitHub</h3>
             <p>
-                Version control and project management.
+                Version control and
+                project management.
             </p>
-
         </div>
 
-
-        <div class="skill-card">
-
-            <div class="skill-icon">
-                SQL
-            </div>
-
-            <h3>
-                SQL
-            </h3>
-
+        <div class="skill">
+            <div class="skill-icon">SQL</div>
+            <h3>SQL</h3>
             <p>
-                Learning databases and data management.
+                Learning databases and
+                data management.
             </p>
-
         </div>
 
-
-        <div class="skill-card">
-
-            <div class="skill-icon">
-                AI
-            </div>
-
-            <h3>
-                AI / ML
-            </h3>
-
+        <div class="skill">
+            <div class="skill-icon">AI</div>
+            <h3>AI / ML</h3>
             <p>
-                Exploring artificial intelligence and machine
-                learning.
+                Exploring artificial intelligence
+                and machine learning.
             </p>
-
         </div>
 
     </div>
@@ -386,61 +1179,56 @@
 </section>
 
 
-<!-- =========================
+<!-- ===================================================
      PROJECTS
-========================= -->
+=================================================== -->
 
-<section class="section projects-section" id="projects">
+<section class="section" id="projects">
 
-    <div class="section-heading">
-
-        <p class="section-number">
-            03 / PROJECTS
-        </p>
-
-        <h2>
-            Things I've
-            <span>built.</span>
-        </h2>
-
+    <div class="section-number">
+        03 / PROJECTS
     </div>
 
+    <h2 class="section-heading">
+        Things I've built.
+    </h2>
 
-    <div class="projects-list">
 
+    <div class="projects-grid">
 
-        <!-- PROJECT 01 -->
 
         <article class="project">
 
             <div>
 
-                <p class="project-number">
+                <div class="project-number">
                     01 / WEBSITE
-                </p>
+                </div>
 
                 <h3>
                     Personal Portfolio
                 </h3>
 
-                <p class="project-description">
-                    My first portfolio website created from
-                    scratch using HTML. It represents the
-                    beginning of my web development journey.
+                <p>
+                    My first portfolio website created
+                    from scratch using HTML. It represents
+                    the beginning of my web development
+                    journey.
                 </p>
 
             </div>
 
-
-            <div class="project-footer">
+            <div class="project-bottom">
 
                 <span>
                     HTML • CSS
                 </span>
 
-                <a href="https://methesanket.github.io/PORTFOLIO/"
-                   target="_blank">
-                    ↗ View Project
+                <a
+                    class="project-link"
+                    href="https://methesanket.github.io/sanket-methe-portfolio/"
+                    target="_blank">
+                    View Project ↗
                 </a>
 
             </div>
@@ -448,37 +1236,36 @@
         </article>
 
 
-        <!-- PROJECT 02 -->
-
         <article class="project">
 
             <div>
 
-                <p class="project-number">
+                <div class="project-number">
                     02 / PORTFOLIO
-                </p>
+                </div>
 
                 <h3>
                     Premium Developer Portfolio
                 </h3>
 
-                <p class="project-description">
-                    A modern personal portfolio focused on
-                    premium UI, responsive design, animations
-                    and interactive experiences.
+                <p>
+                    A modern personal portfolio focused
+                    on premium UI, responsive design,
+                    animations and interactive experiences.
                 </p>
 
             </div>
 
-
-            <div class="project-footer">
+            <div class="project-bottom">
 
                 <span>
                     HTML • CSS • JavaScript
                 </span>
 
-                <a href="#home">
-                    ↗ Current Project
+                <a
+                    class="project-link"
+                    href="#home">
+                    Current Project ↗
                 </a>
 
             </div>
@@ -486,21 +1273,19 @@
         </article>
 
 
-        <!-- PROJECT 03 -->
-
         <article class="project">
 
             <div>
 
-                <p class="project-number">
+                <div class="project-number">
                     03 / UPCOMING
-                </p>
+                </div>
 
                 <h3>
                     More Projects Coming
                 </h3>
 
-                <p class="project-description">
+                <p>
                     I'm currently building more practical
                     projects to improve my development skills
                     and create a stronger portfolio.
@@ -508,15 +1293,16 @@
 
             </div>
 
-
-            <div class="project-footer">
+            <div class="project-bottom">
 
                 <span>
                     IN PROGRESS
                 </span>
 
-                <a href="#contact">
-                    ↗ Stay Connected
+                <a
+                    class="project-link"
+                    href="#contact">
+                    Stay Connected ↗
                 </a>
 
             </div>
@@ -524,173 +1310,179 @@
         </article>
 
 
+        <article class="project">
+
+            <div>
+
+                <div class="project-number">
+                    04 / JOURNEY
+                </div>
+
+                <h3>
+                    Always Learning
+                </h3>
+
+                <p>
+                    Continuously exploring new technologies,
+                    software development concepts and
+                    practical projects.
+                </p>
+
+            </div>
+
+            <div class="project-bottom">
+
+                <span>
+                    LEARNING
+                </span>
+
+                <a
+                    class="project-link"
+                    href="#skills">
+                    My Skills ↗
+                </a>
+
+            </div>
+
+        </article>
+
     </div>
 
 </section>
 
 
-<!-- =========================
+<!-- ===================================================
      JOURNEY
-========================= -->
+=================================================== -->
 
-<section class="section journey">
+<section class="section">
 
-    <div class="section-heading">
-
-        <p class="section-number">
-            04 / JOURNEY
-        </p>
-
-        <h2>
-            Always learning.
-            <span>Always building.</span>
-        </h2>
-
+    <div class="section-number">
+        04 / JOURNEY
     </div>
 
-
-    <div class="timeline">
-
-        <div class="timeline-item">
-
-            <span>
-                01
-            </span>
-
-            <div>
-
-                <h3>
-                    Started Web Development
-                </h3>
-
-                <p>
-                    Began learning HTML, CSS and the fundamentals
-                    of creating websites.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="timeline-item">
-
-            <span>
-                02
-            </span>
-
-            <div>
-
-                <h3>
-                    Started Building Projects
-                </h3>
-
-                <p>
-                    Turned learning into practical projects and
-                    started building real websites.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="timeline-item">
-
-            <span>
-                03
-            </span>
-
-            <div>
-
-                <h3>
-                    Expanding My Skills
-                </h3>
-
-                <p>
-                    Exploring JavaScript, databases, software
-                    development and modern technologies.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="timeline-item">
-
-            <span>
-                04
-            </span>
-
-            <div>
-
-                <h3>
-                    What's Next?
-                </h3>
-
-                <p>
-                    More projects, more learning and new
-                    opportunities.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     CONTACT
-========================= -->
-
-<section class="contact-section" id="contact">
-
-    <p class="section-number">
-        05 / CONTACT
-    </p>
-
-    <h2>
-        Let's build something
-        <span>great.</span>
+    <h2 class="section-heading">
+        Always learning.<br>
+        Always building.
     </h2>
 
-    <p>
-        I'm open to opportunities, collaborations and
-        interesting projects.
-    </p>
+
+    <div class="journey">
+
+        <div class="journey-item">
+
+            <div class="journey-number">
+                01
+            </div>
+
+            <h3>
+                Started Web Development
+            </h3>
+
+            <p>
+                Began learning HTML, CSS and the
+                fundamentals of creating websites.
+            </p>
+
+        </div>
 
 
-    <div class="contact-buttons">
+        <div class="journey-item">
 
-        <a href="mailto:methesanket@gmail.com"
-           class="primary-button">
+            <div class="journey-number">
+                02
+            </div>
 
-            Send Me an Email
-            <span>↗</span>
+            <h3>
+                Started Building Projects
+            </h3>
 
-        </a>
+            <p>
+                Turned learning into practical projects
+                and started building real websites.
+            </p>
 
-
-        <a href="https://www.linkedin.com/in/Sanketmethe"
-           target="_blank"
-           class="secondary-button">
-
-            LinkedIn
-
-        </a>
+        </div>
 
 
-        <a href="https://github.com/methesanket"
-           target="_blank"
-           class="secondary-button">
+        <div class="journey-item">
 
-            GitHub
+            <div class="journey-number">
+                03
+            </div>
 
-        </a>
+            <h3>
+                Expanding My Skills
+            </h3>
+
+            <p>
+                Exploring JavaScript, databases,
+                software development and modern
+                technologies.
+            </p>
+
+        </div>
+
+
+        <div class="journey-item">
+
+            <div class="journey-number">
+                04
+            </div>
+
+            <h3>
+                What's Next?
+            </h3>
+
+            <p>
+                More projects, more learning
+                and new opportunities.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===================================================
+     CONTACT
+=================================================== -->
+
+<section class="section" id="contact">
+
+    <div class="contact-box">
+
+        <h2>
+            Let's build<br>
+            something great.
+        </h2>
+
+        <p>
+            I'm open to opportunities,
+            collaborations and interesting projects.
+        </p>
+
+        <div class="contact-buttons">
+
+            <a href="mailto:your-email@example.com">
+                Send Me an Email ↗
+            </a>
+
+            <a
+                href="https://github.com/methesanket"
+                target="_blank">
+                GitHub
+            </a>
+
+            <a
+                href="https://www.linkedin.com"
+                target="_blank">
+                LinkedIn
+            </a>
+
+        </div>
 
     </div>
 
@@ -699,28 +1491,26 @@
 </main>
 
 
-<!-- =========================
+<!-- ===================================================
      FOOTER
-========================= -->
+=================================================== -->
 
 <footer>
 
-    <div class="footer-logo">
-        Sanket<span>.</span>
+    <div>
+        Sanket.
     </div>
 
-    <p>
+    <div>
         Designed & built by Sanket Methe.
-    </p>
+    </div>
 
-    <p>
-        © <span id="year"></span> Sanket Methe
-    </p>
+    <div>
+        © 2026 Sanket Methe
+    </div>
 
 </footer>
 
-
-<script src="script.js"></script>
 
 </body>
 </html>
